@@ -51,3 +51,11 @@ export const Button = styled.button`
     }
 
 `;
+
+export const Span = styled.span`
+    color: #791a1a;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+`;
