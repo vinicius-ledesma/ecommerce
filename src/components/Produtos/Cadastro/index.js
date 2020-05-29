@@ -61,6 +61,15 @@ function Cadastro() {
         return true;
     },[product, products]);
 
+    const handleKeyUp = useCallback((e) => {
+        let value;
+        value = e.target.value;
+        value = value.replace(/\D/g,"");
+        value = value.replace(/(\d)(\d{2})$/,"$1,$2");
+        value = value.replace(/(?=(\d{3})+(\D))\B/g,".");
+        e.target.value = value;
+    },[]);
+
     const handleChange = useCallback((e) => {
         setProduct({
             ...product,
@@ -73,7 +82,9 @@ function Cadastro() {
         if(!validation()){
             return;
         }
-        setProducts([...products, product]);
+        const prods = [...products, product];
+        setProducts(prods);
+        localStorage.setItem("produtos", JSON.stringify(prods));
         setProduct(initialValue);
     },[product, products, validation, initialValue]);
 
@@ -90,7 +101,7 @@ function Cadastro() {
             <Input placeholder="SKU" onChange={handleChange} name="sku" value={product.sku} />
             <Input placeholder="Nome do Produto" onChange={handleChange} name="name" value={product.name} />
             <Textarea placeholder="Descrição" onChange={handleChange} id="txt" name="description" value={product.description}></Textarea>
-            <Input type="number" min="0" step="0.01" placeholder="Preço de Venda" onChange={handleChange} name="price" value={product.price} />
+            <Input placeholder="Preço de Venda" onChange={handleChange} name="price" onKeyUp={handleKeyUp} value={product.price} />
             <Input placeholder="Quantidade" type="number" min="0" onChange={handleChange} name="quantity" value={product.quantity} />
             <Input placeholder="Imagem" onChange={handleChange} name="image" value={product.image} />
 

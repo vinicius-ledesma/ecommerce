@@ -1,8 +1,13 @@
 import React from 'react';
-import Cadastro from './components/Produtos/Cadastro'
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes'
 
 function App() {
-  return <Cadastro />;
+  return (
+    <BrowserRouter>
+    <Routes />
+  </BrowserRouter>
+  );
 }
 
 export default App;
