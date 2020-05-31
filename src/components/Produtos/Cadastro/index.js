@@ -15,7 +15,6 @@ function Cadastro() {
             .catch((message) => reject(message));
     });
     return <Container>
-        <h3>Cadastro</h3>
         <Formulario 
             operation='Cadastrar'
             callBack={persistProd}

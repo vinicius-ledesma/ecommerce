@@ -7,7 +7,7 @@ const dao = {
     },
     setProducts: function(produtos) {
         return new Promise((resolve, reject) => {
-            if(produtos && produtos.length > 0){
+            if(produtos){
                 localStorage.setItem("produtos", JSON.stringify(produtos));
                 resolve();
             } else {
