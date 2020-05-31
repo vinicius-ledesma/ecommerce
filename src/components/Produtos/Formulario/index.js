@@ -157,7 +157,7 @@ function Formulario({operation, initialValue, backFunction, callBack}) {
                 error={invalidKeys.includes("quantity")} 
                 disabled={evalDisableField()}
                 type="number"
-                min="0"
+                inputProps={{ min: "0"}}
                 onChange={handleChange}
                 value={product.quantity} />
             <TextField 
