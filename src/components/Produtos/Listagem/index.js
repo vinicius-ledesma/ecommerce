@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import dao from '../../../services/dao';
+import daoFactory from '../../../services/dao';
 import Detalhes from '../Detalhes';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -12,6 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 function Listagem() {
+    const [dao, setDAO] = useState();
     const [produtos, setProdutos] = useState([]);
     const [currentProd, setCurrentProd] = useState(null);
     const [message, setMessage] = useState(null);
@@ -40,7 +41,7 @@ function Listagem() {
             const otherProducts = produtos.filter(prod => prod.sku !== product.sku);
             refreshedProducts = [...otherProducts, product];
         }
-        dao.setProducts(refreshedProducts)
+        dao.setProducts(refreshedProducts, {product, currentOperation})
             .then(() => {
                 setProdutosSorted(refreshedProducts);
                     resolve();
@@ -48,7 +49,7 @@ function Listagem() {
             .catch((message) => reject(message));
     });
 
-    const renderProducts = useCallback((productsToRender) => {
+    const renderProducts = useCallback((productsToRender, dao) => {
         
         if(productsToRender){
             if(productsToRender.length > 0){
@@ -69,10 +70,13 @@ function Listagem() {
         .catch((message) => {
             setMessage(message);
         });
-    },[]);
+    },[dao]);
 
     useEffect(() => {
-        renderProducts();
+        daoFactory().then(dao => {
+            setDAO(dao);
+            renderProducts(null, dao);
+        });
     }, [renderProducts]);
 
     const visualizarDetalhes = useCallback((produto) => {

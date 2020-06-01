@@ -1,0 +1,28 @@
+{
+  "produtos": [
+    {
+      "id": "001",
+      "name": "Nintendo Switch",
+      "description": "Console portátil de última geração da Nintendo.",
+      "price": "3.999,90",
+      "quantity": "3",
+      "image": "https://cdn.shopify.com/s/files/1/0271/1627/3725/products/switch_360x.jpg?v=1586473639"
+    },
+    {
+      "id": "002",
+      "name": "PlayStation 4",
+      "description": "Console de mesa de última geração da Sony.",
+      "price": "2.499,90",
+      "quantity": "5",
+      "image": "https://cdn.shopify.com/s/files/1/0271/1627/3725/products/ps4_360x.jpg?v=1586472980"
+    },
+    {
+      "id": "003",
+      "name": "Xbox One",
+      "description": "Console de mesa de última geração da Microsoft.",
+      "price": "1.999,90",
+      "quantity": "8",
+      "image": "none"
+    }
+  ]
+}
